@@ -1,0 +1,186 @@
+/* Ultra-Minimalist & Elegant Streamlit Custom Stylesheet for NMMVA CORP */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cinzel:wght@600;700;800&display=swap');
+
+/* Solid Very Dark Purple (Almost Black) Page Background */
+.stApp {
+    background-color: #07040B !important;
+    background-image: none !important;
+    color: #FFFFFF !important;
+}
+
+/* Global Font Overrides - Excluding Material Icons */
+html, body, p, label, input, button {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #FFFFFF !important;
+}
+
+:not([class*="material"]):not([class*="Material"]):not([data-testid*="Icon"]) {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Cinzel', serif !important;
+    color: #FFFFFF !important;
+    letter-spacing: 1.5px !important;
+}
+
+/* Preserve Streamlit Material Icons for Sidebar Collapse Button */
+button[data-testid="stSidebarCollapseButton"] *,
+button[data-testid="stSidebarExpandButton"] *,
+[data-testid="stHeader"] button *,
+[class*="material-symbols"],
+[class*="MaterialSymbols"] {
+    font-family: 'Material Symbols Rounded', 'Material Icons', sans-serif !important;
+    color: #FFFFFF !important;
+}
+
+button[data-testid="stSidebarCollapseButton"],
+button[data-testid="stSidebarExpandButton"] {
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    padding: 4px 8px !important;
+}
+
+.block-container {
+    padding-top: 1rem !important;
+    padding-bottom: 3rem !important;
+    max-width: 950px !important;
+}
+
+/* Top Banner Image Styling */
+.banner-image {
+    width: 100% !important;
+    max-height: 450px !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+    margin-bottom: 30px !important;
+    display: block !important;
+}
+
+/* Hero Title & Typography */
+.hero-title {
+    font-size: 3.2rem !important;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #FFFFFF !important;
+    letter-spacing: 3px !important;
+}
+
+.hero-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-bottom: 25px;
+    letter-spacing: 1.5px;
+}
+
+.hero-description {
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.95) !important;
+    max-width: 820px;
+    margin: 0 auto 30px auto;
+}
+
+/* Polished Minimalist White Buttons */
+div.stButton > button {
+    background: #FFFFFF !important;
+    color: #07040B !important;
+    border: 1px solid #FFFFFF !important;
+    border-radius: 6px !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 1px;
+    padding: 0.75rem 2rem !important;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+    transition: all 0.25s ease-in-out !important;
+    width: 100%;
+}
+
+div.stButton > button:hover {
+    background: #E2E8F0 !important;
+    color: #000000 !important;
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-1px);
+}
+
+div.stButton > button p {
+    color: #07040B !important;
+    font-weight: 700 !important;
+}
+
+/* Form Submit Buttons */
+div.stFormSubmitButton > button {
+    background: #FFFFFF !important;
+    color: #07040B !important;
+    border: 1px solid #FFFFFF !important;
+    border-radius: 6px !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 1px;
+    padding: 0.75rem 2rem !important;
+    width: 100%;
+}
+
+div.stFormSubmitButton > button:hover {
+    background: #E2E8F0 !important;
+    color: #000000 !important;
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.35) !important;
+}
+
+div.stFormSubmitButton > button p {
+    color: #07040B !important;
+    font-weight: 700 !important;
+}
+
+/* Form Inputs Styling */
+.stTextInput input, .stNumberInput input {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 6px !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem !important;
+}
+
+.stTextInput input:focus, .stNumberInput input:focus {
+    border-color: #FFFFFF !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Streamlit Tabs Customization */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stTabs [data-baseweb="tab"] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 6px 6px 0 0 !important;
+    padding: 10px 20px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 600 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-bottom: none !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Sidebar Custom Styling */
+section[data-testid="stSidebar"] {
+    background-color: #050308 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}

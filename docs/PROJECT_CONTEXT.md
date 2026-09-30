@@ -16,6 +16,7 @@
   * Hasheo de contraseñas con **SHA-256**.
   * Autenticación de Doble Factor (**2FA TOTP**, RFC 6238) mediante `pyotp` y `qrcode`.
   * Firma digital criptográfica SHA-256 para No-Repudio de contratos.
+* **Endurecimiento (STRIDE/ATT&CK/X.800):** ver [`SEGURIDAD.md`](SEGURIDAD.md) — login MFA, scrypt, cifrado de campos, firma Ed25519 y auditoría encadenada.
 * **Base de Datos:** MySQL (`nmmva_bank`) con tablas: `usuarios`, `logs_auditoria`, `contratos_firmados`.
 
 ---

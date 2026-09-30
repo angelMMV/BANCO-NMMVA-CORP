@@ -1,6 +1,7 @@
 import streamlit as st
 from frontend.api_client import APIClient
 
+
 def render_registration_view():
     """Renders user account creation view (Step 1)."""
     st.markdown("""
@@ -15,13 +16,14 @@ def render_registration_view():
     with st.form("form_registro", clear_on_submit=False):
         col1, col2 = st.columns(2)
         with col1:
-            nombre = st.text_input("Nombre Completo")
-            correo = st.text_input("Correo Electrónico")
+            nombre = st.text_input("Nombre Completo", max_chars=100)
+            correo = st.text_input("Correo Electrónico", max_chars=100)
             edad = st.number_input("Edad", min_value=18, max_value=100, step=1, value=25)
         with col2:
-            password = st.text_input("Contraseña", type="password")
-            curp = st.text_input("CURP")
-        
+            password = st.text_input("Contraseña", type="password", max_chars=128,
+                                     help="Mínimo 12 caracteres. Usa una frase larga; evita tu nombre, tu correo o contraseñas comunes.")
+            curp = st.text_input("CURP", max_chars=18)
+
         submitted = st.form_submit_button("REGISTRAR CUENTA BANCARIA")
 
         if submitted:
@@ -29,13 +31,15 @@ def render_registration_view():
                 try:
                     res = APIClient.registrar_usuario(nombre, correo, password, edad, curp)
                     if res.status_code == 200:
-                        id_usuario = res.json()["id_usuario"]
-                        st.session_state.id_usuario = id_usuario
-                        st.success(f"¡Cuenta creada con éxito! Tu ID de Usuario es: {id_usuario}")
+                        datos = res.json()
+                        st.session_state.id_usuario = datos["id_usuario"]
+                        st.session_state.token_enroll = datos["token"]
+                        st.session_state.token_access = None
+                        st.success(f"¡Cuenta creada con éxito! Tu ID de Usuario es: {datos['id_usuario']}")
                         st.info("Pasa al Paso 2 en la pestaña superior para configurar tu doble factor (2FA TOTP).")
                     else:
-                        st.error(f"Error al registrar: {res.json().get('detail', 'Ocurrió un error en el servidor.')}")
-                except Exception as e:
-                    st.error(f"No se pudo conectar con el Backend: {e}")
+                        st.error(f"No se pudo registrar: {APIClient.mensaje_error(res)}")
+                except Exception:
+                    st.error("No se pudo conectar con el Backend. Verifica que esté en ejecución.")
             else:
                 st.warning("Por favor llena todos los campos del formulario.")

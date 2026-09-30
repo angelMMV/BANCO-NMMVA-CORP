@@ -24,6 +24,14 @@ if os.path.exists(css_path):
 if 'id_usuario' not in st.session_state:
     st.session_state.id_usuario = None
 
+# Tokens de la API: "enroll" (sólo configurar 2FA) y "access" (login MFA; permite firmar).
+# Viven únicamente en la sesión del servidor de Streamlit; nunca se escriben en disco ni en la URL.
+if 'token_enroll' not in st.session_state:
+    st.session_state.token_enroll = None
+
+if 'token_access' not in st.session_state:
+    st.session_state.token_access = None
+
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "landing"
 

@@ -50,3 +50,27 @@ python run_backend.py
 python run_frontend.py
 ```
 *Abre automáticamente la interfaz en `http://localhost:8501`.*
+
+---
+
+## 🔐 Seguridad (STRIDE · MITRE ATT&CK · CIA+ · X.800 · Defensa en Profundidad)
+
+El proyecto fue analizado con **STRIDE** y endurecido aplicando **MITRE ATT&CK, CIA+, ITU-T X.800 y Defensa en Profundidad**.
+Documentación completa, evidencia *antes/después* y limitaciones: [`docs/SEGURIDAD.md`](docs/SEGURIDAD.md).
+
+**Novedades principales**
+- **Login MFA** (`POST /login`: contraseña + TOTP) con tokens de 15 min; la identidad sale del token, no del cliente.
+- Contraseñas con **scrypt** + política de 12 caracteres; TOTP de **un solo uso**; **bloqueo de cuenta** y límite de tasa por IP.
+- **TOTP y CURP cifrados** en la base de datos.
+- **Firma Ed25519** ligada al hash del documento (`POST /verificar-firma`) y **bitácora encadenada** a prueba de manipulación (`GET /auditoria/verificar`).
+- Sin `root` ni claves en el código: configuración por variables de entorno (`NMMVA_*`).
+
+**Flujo actualizado:** Registro → Configurar 2FA → **Iniciar sesión** (Paso 3) → Firmar.
+
+**Antes de actualizar una base ya en uso, haz un respaldo** (`mysqldump nmmva_bank > respaldo.sql`). Los usuarios existentes se migran solos.
+
+```powershell
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+pytest          # 38 pruebas (usa una base separada: nmmva_bank_test)
+```

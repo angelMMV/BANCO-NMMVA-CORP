@@ -38,8 +38,14 @@ def render_sidebar():
         st.markdown("<p style='font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; color: rgba(255, 255, 255, 0.7); text-transform: uppercase;'>Estado de Sesión</p>", unsafe_allow_html=True)
         if st.session_state.get('id_usuario'):
             st.info(f"Usuario Activo ID: {st.session_state.id_usuario}")
+            if st.session_state.get('token_access'):
+                st.success("Sesión MFA activa (puedes firmar)")
+            else:
+                st.caption("Inicia sesión en el Paso 3 para firmar.")
             if st.button("Cerrar Sesión"):
                 st.session_state.id_usuario = None
+                st.session_state.token_enroll = None
+                st.session_state.token_access = None
                 st.rerun()
         else:
             st.warning("Sin sesión activa")

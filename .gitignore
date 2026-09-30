@@ -1,4 +1,12 @@
+# Entornos y dependencias
 venv/
-__pycache__/
-.env
 node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secretos: NUNCA se suben al repositorio (ver docs/SEGURIDAD.md, sección Gestión de claves)
+.env
+.secrets/
+*.key
+*.pem
